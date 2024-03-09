@@ -1,7 +1,9 @@
 <template>
-  <div class="h-10 w-32 rounded-full p-[2px] relative">
+  <div class="rounded-full p-[2px] relative cursor-pointer">
     <div class="w-full h-full rounded-full absolute top-0 left-0 spin z-[-1]"></div>
-    <div class="w-full h-full rounded-full bg-gray-500"></div>
+    <div class="rounded-full overflow-hidden">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
