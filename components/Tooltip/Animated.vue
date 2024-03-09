@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-14 h-14 rounded-full cursor-pointer relative main"
+    class="rounded-full cursor-pointer relative main"
     @mousemove="mouseMove"
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave">
