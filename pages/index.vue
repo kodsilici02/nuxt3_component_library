@@ -1,6 +1,6 @@
 <template>
   <div class="w-full h-full min-h-[100vh] flex flex-col gap-3 justify-center items-center">
-    <DirectionAwareHover></DirectionAwareHover>
+    <ButtonChaotic></ButtonChaotic>
   </div>
 </template>
 
