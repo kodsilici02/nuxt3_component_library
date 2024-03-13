@@ -1,11 +1,14 @@
 <template>
-  <div class="card" ref="card">
+  <div class="card" ref="card" :style="{ width: width + 'px', height: height + 'px' }">
     <div class="card-border" :style="{ opacity: isHovered ? '1' : '0' }"></div>
     <div class="card-content"><slot></slot></div>
   </div>
 </template>
 
 <script setup>
+const height = inject('height');
+const width = inject('width');
+
 const card = ref();
 const clientX = inject('clientX');
 const clientY = inject('clientY');
@@ -29,8 +32,6 @@ const isHovered = inject('isHovered');
   --mouse-x: 0px;
   --mouse-y: 0px;
   background-color: rgba(255, 255, 255, 0.1);
-  height: 260px;
-  width: 300px;
   border-radius: 10px;
   position: relative;
   padding: 2px;

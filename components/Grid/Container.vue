@@ -14,8 +14,19 @@ const props = defineProps({
   columns: {
     type: Number,
     default: 3
+  },
+  cardsHeight: {
+    type: Number,
+    default: 260
+  },
+  cardsWidth: {
+    type: Number,
+    default: 300
   }
 });
+
+provide('height', props.cardsHeight);
+provide('width', props.cardsWidth);
 
 const x = ref();
 const y = ref();
