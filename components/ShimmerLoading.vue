@@ -1,8 +1,6 @@
 <template>
-  <div class="overflow-hidden">
-    <div
-      class="w-full h-full relative overflow-hidden shimmer"
-      :style="{ '--background': props.background, '--shimmer': props.shimmer }"></div>
+  <div class="main" :style="{ '--background': props.background, '--shimmer': props.shimmer }">
+    <div class="shimmer"></div>
   </div>
 </template>
 
@@ -20,28 +18,33 @@ const props = defineProps({
 </script>
 
 <style lang="scss" scoped>
-.shimmer {
+.main {
   --background: #c2c2c2;
   --shimmer: #ffffff;
   background-color: var(--background);
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 300%;
-    width: 100%;
-    animation: shimmer 2s infinite;
-    background: linear-gradient(90deg, transparent, var(--shimmer), transparent);
-  }
+  position: relative;
+  overflow: hidden;
 }
 
+.shimmer {
+  transition: all 4s ease;
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  border-radius: initial;
+  left: 0;
+  top: 0;
+  transform: translateX(-100%) translateY(-100%);
+  animation: shimmer 2s infinite ease;
+  mask-image: linear-gradient(-45deg, transparent 30%, rgba(0, 0, 0, 1) 70%, transparent 100%);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0) 40%, var(--shimmer) 50%, rgba(255, 255, 255, 0) 60%);
+}
 @keyframes shimmer {
   from {
-    transform: rotate(30deg) translateX(-200%);
+    transform: translateX(-100%) translateY(-100%);
   }
   to {
-    transform: rotate(30deg) translateX(200%);
+    transform: translateX(100%) translateY(100%);
   }
 }
 </style>
