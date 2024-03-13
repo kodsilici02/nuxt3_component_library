@@ -22,8 +22,8 @@ function mouseLeave() {
   isHovered.value = false;
 }
 
-provide('x', x);
-provide('y', y);
+provide('clientX', x);
+provide('clientY', y);
 provide('isHovered', isHovered);
 </script>
 

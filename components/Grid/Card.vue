@@ -7,15 +7,15 @@
 
 <script setup>
 const card = ref();
-const x = inject('x');
-const y = inject('y');
+const clientX = inject('clientX');
+const clientY = inject('clientY');
 
-watch(x, newVal => {
+watch(clientX, newVal => {
   let rect = card.value.getBoundingClientRect();
   let mouseX = newVal - rect.left;
   card.value.style.setProperty('--mouse-x', `${mouseX}px`);
 });
-watch(y, newVal => {
+watch(clientY, newVal => {
   let rect = card.value.getBoundingClientRect();
   let mouseY = newVal - rect.top;
   card.value.style.setProperty('--mouse-y', `${mouseY}px`);
