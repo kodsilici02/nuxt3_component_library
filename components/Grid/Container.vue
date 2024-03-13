@@ -1,10 +1,22 @@
 <template>
-  <div class="main" @mousemove="mouseMove" @mouseenter="mouseEnter" @mouseleave="mouseLeave">
+  <div
+    class="main grid"
+    :style="{ 'grid-template-columns': `repeat(${props.columns}, minmax(0, 1fr))` }"
+    @mousemove="mouseMove"
+    @mouseenter="mouseEnter"
+    @mouseleave="mouseLeave">
     <slot></slot>
   </div>
 </template>
 
 <script setup>
+const props = defineProps({
+  columns: {
+    type: Number,
+    default: 3
+  }
+});
+
 const x = ref();
 const y = ref();
 const isHovered = ref(false);
@@ -29,10 +41,7 @@ provide('isHovered', isHovered);
 
 <style lang="scss" scoped>
 .main {
-  display: flex;
-  flex-wrap: wrap;
   gap: 8px;
-  max-width: 916px;
   width: fit-content;
 }
 </style>
