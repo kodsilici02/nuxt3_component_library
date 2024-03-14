@@ -21,7 +21,15 @@
 </template>
 
 <script setup>
-import gsap from 'gsap';
+useHead({
+  script: [
+    {
+      src: 'https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js',
+      async: true
+    }
+  ]
+});
+
 const containerRef = ref(null);
 const svgHeight = computed(() => {
   if (containerRef.value) {
@@ -32,10 +40,6 @@ const svgHeight = computed(() => {
 });
 
 const gradient = ref();
-
-// Example reactive gradient positions, replace with your scroll-linked logic
-const gradientStart = ref(0);
-const gradientEnd = ref(svgHeight.value);
 
 onMounted(() => {
   getScrollValues(window.scrollY, svgHeight.value);
