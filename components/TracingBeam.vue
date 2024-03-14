@@ -1,5 +1,5 @@
 <template>
-  <div ref="containerRef" class="ml-4 flex h-full" aria-hidden="true">
+  <div ref="containerRef" class="ml-4 flex gap-3" aria-hidden="true">
     <svg :viewBox="`0 0 20 ${svgHeight}`" width="20" height="100%" class="transition-all duration-300 ease-in">
       <path :d="`M 1 0V -36 l 18 24 V ${svgHeight * 0.8} l -18 24V ${svgHeight}`" fill="none" stroke="#9091A0" stroke-opacity="0.16"></path>
       <path
@@ -16,6 +16,7 @@
         </linearGradient>
       </defs>
     </svg>
+    <slot></slot>
   </div>
 </template>
 
