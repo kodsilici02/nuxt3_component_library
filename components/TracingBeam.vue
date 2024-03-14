@@ -8,7 +8,7 @@
         stroke="url(#gradient)"
         stroke-width="1.25"></path>
       <defs>
-        <linearGradient id="gradient" gradientUnits="userSpaceOnUse" x1="0" x2="0" :y1="gradientStart" :y2="gradientEnd">
+        <linearGradient ref="gradient" id="gradient" gradientUnits="userSpaceOnUse" x1="0" x2="0" y1="0" y2="0">
           <stop stop-color="#18CCFC" stop-opacity="0"></stop>
           <stop offset="20%" stop-color="#18CCFC"></stop>
           <stop offset="80%" stop-color="#6344F5"></stop>
@@ -20,6 +20,7 @@
 </template>
 
 <script setup>
+import gsap from 'gsap';
 const containerRef = ref(null);
 const svgHeight = computed(() => {
   if (containerRef.value) {
@@ -28,6 +29,8 @@ const svgHeight = computed(() => {
     return 500;
   }
 });
+
+const gradient = ref();
 
 // Example reactive gradient positions, replace with your scroll-linked logic
 const gradientStart = ref(0);
@@ -46,8 +49,11 @@ function getScrollValues(scrollY, height) {
   const y1 = scrollY;
   const y2 = height * scrollYProgress * 2;
 
-  gradientStart.value = y1;
-  gradientEnd.value = y2;
+  gsap.to(document.querySelector('#gradient'), {
+    attr: { y1: y1, y2: y2 },
+    duration: 0.8,
+    ease: 'ease-in-out'
+  });
 }
 
 onUnmounted(() => {
