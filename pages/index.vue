@@ -1,6 +1,6 @@
 <template>
   <div class="w-full h-[200vh] flex flex-col gap-3 justify-start items-center mt-10">
-    <TabsUnderline></TabsUnderline>
+    <TabsVertical></TabsVertical>
   </div>
 </template>
 
