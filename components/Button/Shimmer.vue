@@ -1,5 +1,6 @@
 <template>
   <button
+    v-wave
     class="px-3 py-2 rounded-lg button cursor-pointer relative overflow-hidden"
     @click="emits('handleClick')"
     :style="{ 'background-color': props.background }">

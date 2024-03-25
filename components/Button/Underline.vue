@@ -1,5 +1,6 @@
 <template>
   <button
+    v-wave
     class="px-3 py-2 rounded-lg button cursor-pointer relative"
     @click="emits('handleClick')"
     :style="{ '--color': props.underlineColor }">

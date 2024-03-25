@@ -1,7 +1,7 @@
 <template>
-  <div class="rounded-full p-[2px] relative cursor-pointer">
+  <div v-wave class="rounded-full p-[2px] relative cursor-pointer">
     <div class="w-full h-full rounded-full absolute top-0 left-0 spin z-[-1]"></div>
-    <div class="rounded-full overflow-hidden">
+    <div v-wave class="rounded-full overflow-hidden bg-black">
       <slot></slot>
     </div>
   </div>

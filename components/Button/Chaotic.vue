@@ -2,7 +2,7 @@
   <div class="rounded-lg p-[2px] relative main cursor-pointer">
     <div class="background rounded-lg"></div>
     <div class="blur rounded-lg"></div>
-    <div class="button w-full h-full rounded-lg z-[1] px-3 py-1">
+    <div v-wave class="button w-full h-full rounded-lg z-[1] px-3 py-1">
       <slot></slot>
     </div>
   </div>

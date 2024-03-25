@@ -11,7 +11,7 @@ export default defineNuxtConfig({
       }
     }
   },
-  modules: ['@nuxtjs/color-mode'],
+  modules: ['@nuxtjs/color-mode', 'v-wave/nuxt'],
   css: ['@/main.css'],
   postcss: {
     plugins: {
