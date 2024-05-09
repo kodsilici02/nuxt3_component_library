@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  --background: #212121;
+  --primary: rgb(24, 177, 98);
+  --text-gray: rgb(200, 200, 200);
+  color: aliceblue;
+  background-color: var(--background);
+}
+
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;

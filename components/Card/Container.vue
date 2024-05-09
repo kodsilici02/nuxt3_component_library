@@ -5,6 +5,16 @@
 </template>
 
 <script setup>
+const props = defineProps({
+  multiplierX: {
+    type: Number,
+    default: 20
+  },
+  multiplierY: {
+    type: Number,
+    default: 10
+  }
+});
 const container = ref();
 function mouseMove() {
   const x = event.offsetX;
@@ -39,7 +49,7 @@ provide('isHovered', isHovered);
   transform-style: preserve-3d;
   perspective: 1000px;
   &:hover {
-    transform: rotateX(var(--rotateX)) rotateY(var(--rotateY));
+    transform: rotateX(var(--rotateX)) rotateY(var(--rotateY)) scale(1.03);
   }
 }
 </style>

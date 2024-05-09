@@ -1,6 +1,6 @@
 <template>
   <div class="w-full h-[100vh] flex flex-col gap-3 justify-center items-center mt-10">
-    <TabsHorizontal></TabsHorizontal>
+    <NuxtLink :to="'/components'">components</NuxtLink>
   </div>
 </template>
 

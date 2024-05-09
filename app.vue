@@ -1,10 +1,7 @@
 <template>
-  <NuxtPage></NuxtPage>
+  <NuxtLayout name="default">
+    <NuxtPage></NuxtPage>
+  </NuxtLayout>
 </template>
 <script setup></script>
-<style>
-body {
-  background-color: #212121;
-  color: aliceblue;
-}
-</style>
+<style></style>
