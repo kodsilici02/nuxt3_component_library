@@ -1,9 +1,10 @@
 <template>
-  <div class="flex relative main" ref="main">
+  <div class="flex relative main" :style="{ '--background': props.background }" ref="main">
     <div
       v-for="(item, index) in items"
       v-wave
       class="cursor-pointer px-[16px] py-[8px] rounded-lg link"
+      :class="props.class"
       ref="link"
       @click="handleClick(index)">
       {{ item }}
@@ -20,6 +21,14 @@ const props = defineProps({
   items: {
     type: Array,
     default: ['Tab 1', 'Tab 2']
+  },
+  background: {
+    type: String,
+    default: 'linear-gradient(90deg, rgba(24, 204, 252, 1) 0%, rgba(99, 68, 245, 1) 100%)'
+  },
+  class: {
+    type: String,
+    default: ''
   }
 });
 
@@ -83,13 +92,7 @@ function handleClick(item) {
     width: var(--width);
     height: 2px;
     border-radius: 100vh;
-    background-image: linear-gradient(90deg, rgba(24, 204, 252, 1) 0%, rgba(99, 68, 245, 1) 100%);
-  }
-}
-.link {
-  transition: all 0.2s ease-out;
-  &:hover {
-    background-color: rgba(225, 225, 225, 0.07);
+    background-image: var(--background);
   }
 }
 </style>

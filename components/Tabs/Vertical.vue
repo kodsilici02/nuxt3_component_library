@@ -1,6 +1,14 @@
 <template>
-  <div class="flex flex-col relative main" ref="main">
-    <div v-for="(item, index) in items" class="cursor-pointer px-3 py-1 rounded-lg" ref="link" @click="handleClick(index)">{{ item }}</div>
+  <div class="flex flex-col relative main" :style="{ '--background': props.background }" ref="main">
+    <div
+      v-wave
+      v-for="(item, index) in items"
+      class="cursor-pointer px-[16px] py-[8px] rounded-lg link"
+      :class="props.class"
+      ref="link"
+      @click="handleClick(index)">
+      {{ item }}
+    </div>
   </div>
 </template>
 
@@ -9,11 +17,22 @@ const props = defineProps({
   active: {
     type: Number,
     default: 0
+  },
+  items: {
+    type: Array,
+    default: ['Tab 1', 'Tab 2']
+  },
+  background: {
+    type: String,
+    default: 'linear-gradient(180deg, rgba(24, 204, 252, 1) 0%, rgba(99, 68, 245, 1) 100%)'
+  },
+  class: {
+    type: String,
+    default: ''
   }
 });
 
 const emits = defineEmits(['handleClick']);
-const items = ['home', 'profile', 'liked', 'following'];
 const link = ref();
 const main = ref();
 const active_el = ref(props.active);
@@ -73,7 +92,7 @@ function handleClick(item) {
     width: 2px;
     height: var(--height);
     border-radius: 100vh;
-    background-image: linear-gradient(180deg, rgba(24, 204, 252, 1) 0%, rgba(99, 68, 245, 1) 100%);
+    background: var(--background);
   }
 }
 </style>
