@@ -1,7 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  ssr: false,
   app: {
     head: {
       title: 'Nuxt 3 Portfolio',
@@ -14,7 +13,7 @@ export default defineNuxtConfig({
   },
   modules: ['v-wave/nuxt'],
   modules: ['@nuxtjs/color-mode', 'v-wave/nuxt'],
-  css: ['@/main.scss'],
+  css: ['@/main.scss', '@/assets/css/transitions.scss'],
   postcss: {
     plugins: {
       tailwindcss: {},

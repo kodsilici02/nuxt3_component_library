@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full flex items-center justify-center">glass</div>
+  <div>deneme</div>
 </template>
 
 <script setup></script>
