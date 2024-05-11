@@ -4,7 +4,7 @@
       <NuxtLink
         :to="'/components/' + route.path"
         v-for="route in allRoutes"
-        class="link w-full flex justify-left px-[32px] py-[4px] cursor-pointer font-[500]"
+        class="link w-full flex justify-left px-[32px] py-[4px] cursor-pointer"
         >{{ formatText(route.path) }}</NuxtLink
       >
     </div>
@@ -70,5 +70,6 @@ router.beforeEach((to, from) => {
 }
 .router-link-exact-active {
   color: aliceblue;
+  font-weight: 600;
 }
 </style>

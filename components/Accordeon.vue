@@ -1,29 +1,38 @@
 <template>
-  <div class="w-full flex flex-col">
-    <div class="w-full main overflow-auto" ref="container" :style="{ maxHeight: max }">
-      <div class="w-full rounded-lg" ref="content">
+  <div class="flex flex-col pb-[8px]" style="border-bottom: 1px solid rgba(155, 155, 155, 0.3)">
+    <button class="sticky top-0 left-0 h-fit" @click="toggleAccordeon()">
+      <div class="flex justify-between px-[8px] py-[8px] font-bold">
+        <slot name="trigger"></slot
+        ><i
+          :class="{ 'rotate-[-180deg]': open }"
+          class="fa fa-chevron-down transition-all"
+          :style="{ transitionDuration: props.duration + 's' }"></i>
+      </div>
+    </button>
+    <div class="max-h-0 overflow-auto" ref="container">
+      <div ref="content">
         <slot></slot>
       </div>
-    </div>
-    <div
-      class="sticky bottom-0 left-0 w-full h-fit flex justify-center show-more cursor-pointer"
-      :style="{ 'background-color': props.buttonBackground }"
-      ref="show_more"
-      @click="toggleAccordeon()">
-      <div>{{ text }}</div>
     </div>
   </div>
 </template>
 
 <script setup>
+import gsap from 'gsap';
+
+useHead({
+  link: [
+    {
+      rel: 'stylesheet',
+      href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css'
+    }
+  ]
+});
+
 const props = defineProps({
-  openText: {
-    type: String,
-    default: ''
-  },
-  closeText: {
-    type: String,
-    default: ''
+  open: {
+    type: Boolean,
+    default: false
   },
   maxHeight: {
     type: Number,
@@ -32,42 +41,39 @@ const props = defineProps({
   buttonBackground: {
     type: String,
     default: 'black'
+  },
+  duration: {
+    type: Number,
+    default: 0.4
   }
 });
+
+watch(
+  () => props.open,
+  newVal => {
+    toggleAccordeon();
+    open.value = newVal;
+  }
+);
+
+const emits = defineEmits(['handleToggle']);
 
 const open = ref(false);
-const text = computed(() => {
-  if (open.value) {
-    return props.openText;
-  } else {
-    return props.closeText;
-  }
-});
 
 const content = ref();
-
-const max = computed(() => {
-  if (open.value) {
-    if (content.value.offsetHeight < props.maxHeight) {
-      return content.value.offsetHeight + 'px';
-    } else {
-      return props.maxHeight + 'px';
-    }
-  } else {
-    return 0 + 'px';
-  }
-});
-
 const container = ref();
 
 function toggleAccordeon() {
   open.value = !open.value;
+  if (open.value) {
+    if (content.value.offsetHeight > props.maxHeight) {
+      gsap.to(container.value, { maxHeight: props.maxHeight, duration: props.duration, ease: 'power2.out' });
+    } else {
+      gsap.to(container.value, { maxHeight: content.value.offsetHeight, duration: props.duration, ease: 'power2.out' });
+    }
+  } else {
+    gsap.to(container.value, { maxHeight: 0, duration: props.duration, ease: 'power2.out' });
+  }
+  emits('handleToggle');
 }
 </script>
-
-<style lang="scss" scoped>
-.main {
-  transition: all 0.2s ease-in;
-  max-height: 0;
-}
-</style>
