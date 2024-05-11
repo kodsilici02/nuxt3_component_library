@@ -1,8 +1,8 @@
 <template>
   <div class="w-full h-full flex justify-center items-center">
     <Accordeon class="w-fit">
-      <template v-slot:trigger><div class="font-[500]">trigger</div></template>
-      <div class="h-[500px] w-64">
+      <template v-slot:trigger><div class="font-[500]">Trigger</div></template>
+      <div class="h-fit w-64">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus porro aliquid eligendi distinctio voluptas eos vero quia nobis
         tenetur reiciendis.
       </div>

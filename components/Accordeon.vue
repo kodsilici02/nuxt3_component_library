@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col pb-[8px]" style="border-bottom: 1px solid rgba(155, 155, 155, 0.3)">
-    <button class="sticky top-0 left-0 h-fit" @click="toggleAccordeon()">
-      <div class="flex justify-between px-[8px] py-[8px] font-bold">
+    <button class="sticky top-0 left-0 h-fit w-full" @click="handleClick">
+      <div class="flex justify-between py-[8px] font-bold">
         <slot name="trigger"></slot
         ><i
           :class="{ 'rotate-[-180deg]': open }"
@@ -10,9 +10,7 @@
       </div>
     </button>
     <div class="max-h-0 overflow-auto" ref="container">
-      <div ref="content">
-        <slot></slot>
-      </div>
+      <slot></slot>
     </div>
   </div>
 </template>
@@ -59,21 +57,26 @@ watch(
 const emits = defineEmits(['handleToggle']);
 
 const open = ref(false);
-
-const content = ref();
 const container = ref();
 
 function toggleAccordeon() {
   open.value = !open.value;
+  const tl = gsap.timeline({});
   if (open.value) {
-    if (content.value.offsetHeight > props.maxHeight) {
-      gsap.to(container.value, { maxHeight: props.maxHeight, duration: props.duration, ease: 'power2.out' });
+    if (container.value.scrollHeight > props.maxHeight) {
+      tl.to(container.value, { maxHeight: props.maxHeight, duration: props.duration, ease: 'power2.out' });
     } else {
-      gsap.to(container.value, { maxHeight: content.value.offsetHeight, duration: props.duration, ease: 'power2.out' });
+      tl.set(container.value, { overflow: 'hidden' });
+      tl.to(container.value, { maxHeight: container.value.scrollHeight, duration: props.duration, ease: 'power2.out' });
     }
   } else {
-    gsap.to(container.value, { maxHeight: 0, duration: props.duration, ease: 'power2.out' });
+    tl.to(container.value, { maxHeight: 0, duration: props.duration, ease: 'power2.out' });
   }
+}
+
+function handleClick() {
+  toggleAccordeon();
   emits('handleToggle');
 }
 </script>
+<style></style>

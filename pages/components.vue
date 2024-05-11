@@ -1,14 +1,14 @@
 <template>
-  <div class="w-full h-full flex">
-    <div class="h-full w-72 border-r-[1px] border-gray-400 flex flex-col py-[32px]">
+  <div class="w-full h-full flex lg:px-[80px] xl:px-[240px] py-[32px]">
+    <div class="h-full w-[var(--sidenav-width)] border-r-[1px] border-gray-400 flex flex-col py-[32px]">
       <NuxtLink
         :to="'/components/' + route.path"
         v-for="route in allRoutes"
-        class="link w-full flex justify-left px-[32px] py-[4px] cursor-pointer"
+        class="link w-full flex justify-left px-[32px] py-[4px] cursor-pointer text-sm"
         >{{ formatText(route.path) }}</NuxtLink
       >
     </div>
-    <div class="h-full flex-1 overflow-y-auto">
+    <div class="h-full flex-1 overflow-y-auto px-[32px]">
       <NuxtPage :transition="{ name: transitionName, mode: 'out-in' }"></NuxtPage>
     </div>
   </div>
